@@ -51,6 +51,9 @@ public class SheetViewController: UIViewController {
     /// If true, the child view controller will be inset to account for the bottom safe area. This must be set before the sheet view controller loads for it to function properly
     public var adjustForBottomSafeArea: Bool = false
     
+    /// Color of the view added over bottom bar
+    public var bottomOverlayColor: UIColor = UIColor.white
+    
     /// If true, the bottom safe area will have a blur effect over it. This must be set before the sheet view controller loads for it to function properly
     public var blurBottomSafeArea: Bool = true
     
@@ -241,7 +244,7 @@ public class SheetViewController: UIViewController {
         if self.adjustForBottomSafeArea, bottomInset > 0 {
             // Add white background over bottom bar
             self.containerView.addSubview(UIView(frame: CGRect.zero)) { subview in
-                subview.base.backgroundColor = UIColor.white
+                subview.base.backgroundColor = bottomOverlayColor
                 subview.edges(.bottom, .left, .right).pinToSuperview()
                 subview.height.set(bottomInset)
             }
